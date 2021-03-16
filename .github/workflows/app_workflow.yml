@@ -11,4 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run Linter
+        uses: actions/setup-node@v1
       - run: yarn lint
