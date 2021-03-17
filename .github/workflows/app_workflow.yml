@@ -1,16 +1,17 @@
 name: money_tracker_v2
 
 # Run this workflow every time a new commit pushed to your repository
-on: push
+on:
+  push:
 
-jobs:
-  lint:
-    name: MoneyTracker CI
-    runs-on: ubuntu-latest
+  jobs:
+    lint:
+      name: MoneyTracker CI
+      runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run Linter
-        uses: actions/setup-node@v1
-      - run: yarn install
-      - run: yarn lint
+      steps:
+        - uses: actions/checkout@v2
+        - name: Run Linter
+          uses: actions/setup-node@v1
+        - run: yarn install
+        - run: yarn lint
