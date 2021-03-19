@@ -1,6 +1,7 @@
 import React from 'react';
 import { Auth } from 'aws-amplify';
 import { useHistory } from 'react-router-dom';
+import Notification from '../Components/Notification';
 
 const RegisterConfirm: React.FC = () => {
   const history = useHistory();
@@ -14,7 +15,7 @@ const RegisterConfirm: React.FC = () => {
       await Auth.confirmSignUp(target.email.value, target.code.value);
       history.push('/login');
     } catch (err) {
-      console.log(err);
+      Notification('Error', err.message, 'danger');
     }
   };
   return (

@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Amplify from 'aws-amplify';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 import Header from './Components/Header';
 import Routes from './Components/Routes';
 import COGNITO from './configs/aws';
@@ -16,6 +18,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <UserContextProvider>
+        <ReactNotification />
         <Header />
         <Routes />
       </UserContextProvider>

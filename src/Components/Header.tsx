@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 import { UserContext } from '../utils/userContextProvider';
+import Notification from './Notification';
 
 const Header: React.FC = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
@@ -12,7 +13,7 @@ const Header: React.FC = () => {
       setIsLoggedIn(false);
       history.push('/login');
     } catch (error) {
-      console.log(error);
+      Notification('Error', error.message, 'danger');
     }
   };
 
