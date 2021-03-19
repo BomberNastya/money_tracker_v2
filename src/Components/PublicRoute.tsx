@@ -4,7 +4,7 @@ import { UserContext } from '../utils/userContextProvider';
 
 const PrivateRoute: React.FC<RouteProps> = ({ path, component }) => {
   const { isLoggedIn } = useContext(UserContext);
-  if (isLoggedIn) {
+  if (!isLoggedIn) {
     return <Route path={path} component={component} />;
   }
   return <Redirect to="/" />;

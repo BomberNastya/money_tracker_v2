@@ -1,16 +1,28 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import useGetUser from '../hooks/useGetUser';
+import React, { useContext } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
+import { UserContext } from '../utils/userContextProvider';
 
 const Header: React.FC = () => {
-  const { user } = useGetUser();
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const history = useHistory();
+  const handleLogout = async () => {
+    try {
+      await Auth.signOut();
+      setIsLoggedIn(false);
+      history.push('/login');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <nav>
       <ul>
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
-        {user ? (
+        {isLoggedIn ? (
           <>
             <li>
               <NavLink to="/sections">Sections</NavLink>
@@ -36,9 +48,11 @@ const Header: React.FC = () => {
           </>
         )}
       </ul>
-      {user && (
+      {isLoggedIn && (
         <li>
-          <button type="button">Logout</button>
+          <button type="button" onClick={handleLogout}>
+            Logout
+          </button>
         </li>
       )}
     </nav>

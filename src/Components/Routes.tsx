@@ -10,6 +10,7 @@ import Register from '../Pages/Register';
 import RegisterConfirm from '../Pages/RegisterConfirm';
 import PageNotFound from '../Pages/PageNotFound';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -18,9 +19,9 @@ const Routes: React.FC = () => (
     <PrivateRoute path="/categories" component={Categories} />
     <PrivateRoute path="/entries" component={Entries} />
     <PrivateRoute path="/charts" component={Charts} />
-    <Route path="/login" component={Login} />
-    <Route path="/register" component={Register} />
-    <Route path="/registerConfirm" component={RegisterConfirm} />
+    <PublicRoute path="/login" component={Login} />
+    <PublicRoute path="/register" component={Register} />
+    <PublicRoute path="/registerConfirm" component={RegisterConfirm} />
     <Route component={PageNotFound} />
   </Switch>
 );
